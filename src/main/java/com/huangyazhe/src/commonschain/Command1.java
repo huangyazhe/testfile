@@ -4,7 +4,7 @@ import org.apache.commons.chain.Context;
 
 /**
  * 描述: 任务链1 (直接继承 一个业务类，好处是可以添加切面业务)
- * User: huangyazhe
+ * @author: huangyazhe
  * Date: 2017/6/9
  */
 public class Command1 extends WareCommand {

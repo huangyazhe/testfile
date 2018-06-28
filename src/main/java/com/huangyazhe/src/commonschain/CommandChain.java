@@ -5,7 +5,7 @@ import org.apache.commons.chain.impl.ContextBase;
 
 /**
  * 描述: 通过commons chain 进行任务链的处理
- * User: huangyazhe
+ * @author: huangyazhe
  * Date: 2017/6/9
  */
 public class CommandChain extends ChainBase {

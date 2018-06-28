@@ -5,7 +5,7 @@ import org.apache.commons.chain.Context;
 
 /**
  * 描述: 任务链2 （调用原生的Command interface）
- * User: huangyazhe
+ * @author: huangyazhe
  * Date: 2017/6/9
  */
 public class Command2 implements Command {
