@@ -1,11 +1,13 @@
 package com.huangyazhe.src.guava;
 
+import com.google.common.base.Optional;
+import org.springframework.cache.Cache;
+import org.springframework.cache.guava.GuavaCacheManager;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import com.google.common.base.Optional;
-import org.junit.Test;
 /**
  * Created with IntelliJ IDEA.
  * User: huangyazhe
@@ -24,6 +26,11 @@ import org.junit.Test;
  */
 public class guavaTestNull {
 
+    /**
+     * 日志记录
+     */
+    //private final Logger LOGGER = LoggerFactory.getLogger(this.getClass());
+
     public static void main(String arge[]){
         //testNullObject();
 
@@ -35,7 +42,24 @@ public class guavaTestNull {
         //
         //NUll2NUll();
 
-        testOptional();
+        //testOptional();
+
+       /* GuavaCacheManager guavaCacheManager = new GuavaCacheManager();
+
+        List<String> list = new ArrayList<String>(16);
+        list.add("huangyazhe");
+
+        guavaCacheManager.setCacheNames(list);
+        Cache cache =  guavaCacheManager.getCache("huangyazhe");
+        System.out.println(cache.getName());*/
+
+        guavaTestNull localCacheManager = new guavaTestNull();
+        localCacheManager.cacheValue("huangyazhe111");
+        localCacheManager.cacheValue("huangyazhe222");
+        localCacheManager.cacheValue("huangyazhe333");
+
+        localCacheManager.getValue("huangyazhe111");
+
     }
 
     public static void testNullObject(){
@@ -110,4 +134,50 @@ public class guavaTestNull {
                 System.out.println("NoNullableOpt isPresent:"+NoNullableOpt.isPresent()); ;
             }
         }
+
+
+
+    /**
+     * 添加
+     * @param key
+     * @param value
+     * @return
+     */
+    boolean cacheValue(String value) {
+        try {
+            GuavaCacheManager guavaCacheManager = new GuavaCacheManager();
+
+            List<String> list = new ArrayList<String>(16);
+            list.add(value);
+
+            guavaCacheManager.setCacheNames(list);
+
+            return true;
+        }catch (Exception e){
+            System.out.println("缓存[" + value + "]失败, value[" + value + "]");
+        }
+        return false;
+    }
+
+
+    /**
+     * 获取缓存
+     * @param key
+     * @return
+     */
+    String getValue(String key) {
+
+        try {
+            GuavaCacheManager guavaCacheManager = new GuavaCacheManager();
+
+            Cache cache =  guavaCacheManager.getCache(key);
+            System.out.println(cache.getName());
+
+        }catch (Exception e){
+            System.out.println("缓存[" + key + "] 失败 ");
+        }
+
+        return null;
+    }
+
 }
